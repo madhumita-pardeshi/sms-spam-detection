@@ -1,4 +1,4 @@
-# SMS Spam Detection
+# TextShield SMS Spam Detection
 
 A responsive web app for checking SMS messages with a TF-IDF + Multinomial Naive Bayes classifier. It labels a message as **spam** or **ham** (likely legitimate) and shows the model confidence. The supplied trained model files are included, so you do not need to train the model to run the app.
 
