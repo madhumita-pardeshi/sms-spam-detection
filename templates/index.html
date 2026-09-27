@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f7f8fc">
+  <meta name="description" content="Check whether a text message looks like spam with a machine learning SMS classifier.">
+  <title>TextShield — SMS spam checker</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="/" aria-label="TextShield home"><span class="brand-icon">✳</span><span>text<span class="brand-accent">shield</span></span></a>
+    <span class="top-note"><span class="live-dot"></span> Private message check</span>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="eyebrow"><span class="sparkle">✦</span> SMARTER INBOX, SAFER YOU</div>
+      <h1>Not sure about that<br><span class="headline-accent">text?</span> Check it here.</h1>
+      <p class="subtitle">Paste a message below and let our machine learning model spot the signs of spam.</p>
+    </section>
+
+    <section class="checker-card" aria-label="Message spam checker">
+      <div class="card-heading"><div><span class="step-label">MESSAGE CHECKER</span><h2>What did they send you?</h2></div><span class="sms-icon" aria-hidden="true">▤</span></div>
+      <form method="post" action="/">
+        <label class="sr-only" for="message">Paste a text message</label>
+        <textarea id="message" name="message" maxlength="5000" placeholder="Paste or type your message here…" required>{{ message }}</textarea>
+        <div class="input-meta"><span>🔒 Your message is only used for this check.</span><span id="counter">{{ message|length }} / 5000</span></div>
+        {% if error %}<div class="error-box" role="alert">{{ error }}</div>{% endif %}
+        <button class="check-button" type="submit"><span>Check this message</span><span aria-hidden="true">→</span></button>
+      </form>
+
+      {% if result %}
+      <div class="result-panel {{ 'is-spam' if result.label == 'spam' else 'is-ham' }}" role="status" aria-live="polite">
+        <div class="result-mark">{{ '!' if result.label == 'spam' else '✓' }}</div>
+        <div class="result-copy"><span class="result-kicker">ANALYSIS COMPLETE</span><h3>{{ 'This looks like spam' if result.label == 'spam' else 'This looks like a normal message' }}</h3><p>{{ 'Be careful with links, requests for money, or personal details.' if result.label == 'spam' else 'Our model did not find strong spam signals in this message.' }}</p></div>
+        <div class="confidence"><strong>{{ result.confidence }}%</strong><span>confidence</span></div>
+      </div>
+      {% endif %}
+    </section>
+
+    <section class="how-it-works"><div class="section-kicker">QUICK & SIMPLE</div><h2>Safer texting in three steps</h2><div class="steps">
+      <article class="step"><span class="step-number">01</span><div class="step-icon lavender">↳</div><h3>Paste the text</h3><p>Copy any suspicious SMS and drop it in the box above.</p></article>
+      <article class="step"><span class="step-number">02</span><div class="step-icon mint">✳</div><h3>Run the check</h3><p>Our text classifier looks for patterns commonly found in spam.</p></article>
+      <article class="step"><span class="step-number">03</span><div class="step-icon peach">♡</div><h3>Choose wisely</h3><p>Use the result as a helpful signal before you respond.</p></article>
+    </div></section>
+    <p class="disclaimer">This tool is for educational purposes. Predictions can be wrong—never share sensitive information based only on an automated result.</p>
+  </main>
+  <footer><a class="brand footer-brand" href="/">✳ text<span class="brand-accent">shield</span></a><span>Built to make suspicious texts a little less mysterious.</span></footer>
+  <script>
+    const message = document.getElementById('message');
+    const counter = document.getElementById('counter');
+    message.addEventListener('input', () => { counter.textContent = `${message.value.length} / 5000`; });
+  </script>
+</body>
+</html>

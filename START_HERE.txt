@@ -1,0 +1,21 @@
+SMS SPAM CHECKER — WINDOWS QUICK START
+
+IMPORTANT: Extract the complete ZIP before running anything.
+
+1. In File Explorer, right-click TextShield-SMS-Spam-Checker.zip and choose
+   "Extract All...". Do not open app.py from inside the ZIP.
+2. Open the extracted TextShield-SMS-Spam-Checker folder.
+3. Double-click START_APP.bat and wait while dependencies install the first time.
+4. Your browser will open http://127.0.0.1:5000. If it does not, copy that
+   address into your browser.
+5. Keep the black terminal window open while you use the app. Press Ctrl+C in
+   that window when you are done.
+
+The complete extracted folder must keep app.py, spam_model.pkl,
+tfidf_vectorizer.pkl, templates, and static together.
+
+If Windows says Python is not installed, install Python 3.12 or newer from
+https://www.python.org/downloads/ and select "Add python.exe to PATH" during
+installation. Then double-click START_APP.bat again.
+
+For help, open README.md.
