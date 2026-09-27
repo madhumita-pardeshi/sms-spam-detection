@@ -7,7 +7,7 @@ A responsive web app for checking SMS messages with a TF-IDF + Multinomial Naive
 ## Windows quick start
 
 1. In File Explorer, right-click `SMS-Spam-Detection-main.zip` and choose **Extract All…**. Do not run `app.py` from inside the ZIP.
-2. Open the extracted `SMS-Spam-Detection.zip` folder.
+2. Open the extracted `SMS-Spam-Detection-main.zip` folder.
 3. Double-click `START_APP.bat`. On first launch it creates a local Python environment and installs the requirements. This needs an internet connection.
 4. Your browser opens the app at <http://127.0.0.1:5000>. Keep the terminal window open while using it; press **Ctrl+C** to stop the app.
 
